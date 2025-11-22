@@ -3,527 +3,579 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ama de Llaves - Presentación de Negocio</title>
+  <title>Ama de Llaves - Presentación Premium</title>
+  
+  <!-- Fuentes: Playfair Display (Elegancia) y Lato (Modernidad) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Iconos Phosphor (Estilo Minimalista) -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Configuración de Diseño -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Open Sans', 'sans-serif'],
-            heading: ['Poppins', 'sans-serif'],
+            sans: ['Lato', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
           },
           colors: {
             brand: {
-              blue: '#1e3a8a',   // Azul principal
-              green: '#43b48f',  // Verde acento
-              dark: '#232946',   // Texto oscuro
-              light: '#f8fafc',  // Fondo diapositivas
+              navy: '#1e3a8a',    // Azul Profundo Corporativo
+              teal: '#43b48f',    // Verde Acento Fresco
+              sand: '#fdfbf7',    // Blanco Roto (más cálido que #fff)
+              slate: '#334155',   // Texto secundario
             }
           },
-          boxShadow: {
-            'soft': '0 4px 20px -2px rgba(30, 58, 138, 0.05)',
+          backgroundImage: {
+            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'fade-up': 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
           }
         }
       }
     }
   </script>
+
   <style>
-    /* Animación personalizada para las diapositivas */
-    .fade-in {
-      animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Estilos Base */
+    body {
+      /* Fondo abstracto sutil */
+      background-color: #f3f4f6;
+      background-image: 
+        radial-gradient(at 0% 0%, hsla(217,91%,39%,0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, hsla(160,47%,48%,0.1) 0px, transparent 50%);
+      background-attachment: fixed;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    /* Scrollbar minimalista para contenido extenso */
-    .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-    }
-    .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
+
+    /* Ocultar scrollbar pero permitir scroll */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Utilidad para delays de animación escalonados */
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+    .delay-400 { animation-delay: 400ms; }
+    
+    .glass-panel {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-slate-900 to-brand-blue h-screen w-screen flex items-center justify-center overflow-hidden p-4 sm:p-8">
+<body class="h-screen w-screen flex items-center justify-center overflow-hidden selection:bg-brand-teal selection:text-white">
 
-  <div id="presentation-container" class="bg-brand-light w-full max-w-[1280px] aspect-video rounded-3xl shadow-2xl flex flex-col overflow-hidden relative">
+  <!-- Contenedor Principal de la Presentación (Ratio 16:9) -->
+  <div id="app-container" class="relative w-full max-w-[1400px] aspect-video bg-white/60 shadow-2xl rounded-[2rem] overflow-hidden flex flex-col ring-1 ring-black/5 m-4 md:m-8 glass-panel">
     
-    <main class="flex-1 relative overflow-hidden">
+    <!-- Header Mínimo -->
+    <header class="absolute top-0 left-0 w-full p-6 z-50 flex justify-between items-center pointer-events-none">
+      <div class="flex items-center gap-2 opacity-80">
+        <i class="ph-fill ph-house-line text-brand-navy text-xl"></i>
+        <span class="font-serif font-bold text-brand-navy tracking-wider text-sm">AMA DE LLAVES</span>
+      </div>
+      <div class="text-xs font-bold text-brand-teal tracking-widest uppercase border border-brand-teal/30 px-3 py-1 rounded-full bg-brand-teal/5">
+        Confidencial
+      </div>
+    </header>
+
+    <!-- Área de Diapositivas -->
+    <main class="flex-1 relative">
       
-      <section class="slide hidden h-full flex-col justify-center items-center text-center p-12 fade-in" id="slide-1">
-        <div class="mb-8 animate-bounce">
-          <svg viewBox="0 0 64 64" class="w-24 h-24 mx-auto drop-shadow-md">
-            <circle cx="32" cy="32" r="31" stroke="#1e3a8a" stroke-width="2" fill="#ffffff"/>
-            <path d="M20 44L44 44C45.1 44 46 43.1 46 42V28C46 27.4 45.5 26.9 44.9 26.9L40.9 27V20C40.9 16.1 37.5 13 33.5 13C29.6 13 26.1 16.1 26.1 20V27H22.9C22.3 27 21.8 27.5 21.8 28V42C21.8 43.1 22.7 44 20 44Z" fill="#1e3a8a"/>
-            <rect x="18" y="36" width="28" height="7" rx="2" fill="#43b48f"/>
-          </svg>
-        </div>
-        <h1 class="font-heading font-bold text-5xl md:text-6xl text-brand-blue mb-4 tracking-tight">Ama de Llaves</h1>
-        <p class="font-heading text-xl md:text-2xl text-brand-green font-semibold mb-12">Redefiniendo la Confianza en el Cuidado del Hogar</p>
-        
-        <div class="bg-white/60 backdrop-blur-sm rounded-xl p-6 border border-slate-200 shadow-soft inline-block">
-          <p class="text-brand-dark font-medium mb-2">Daniel Isaias Can Lara &bull; Kevin Panti Ortegón &bull; Mónica Nicte-Ha Nieto Caballero</p>
-          <p class="text-slate-500 text-sm uppercase tracking-wider font-bold">Instituto Tecnológico de Campeche | 21 Noviembre 2025</p>
-        </div>
-      </section>
-
-      <section class="slide hidden h-full flex-col p-10 md:p-16 overflow-y-auto fade-in scrollbar-hide" id="slide-2">
-        <h2 class="font-heading text-4xl font-bold text-brand-blue mb-2">Identidad Corporativa</h2>
-        <p class="text-brand-green font-semibold text-xl mb-8">Ama de Llaves</p>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full">
-          <div class="space-y-6">
-            <div class="flex items-start space-x-4">
-              <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-2xl flex-shrink-0">🏠</div>
-              <div>
-                <h3 class="font-heading font-semibold text-brand-blue">Definición Poética</h3>
-                <p class="text-slate-600">Guardiana del santuario del hogar; profesional que cultiva la armonía y el orden.</p>
-              </div>
-            </div>
-            <div class="flex items-start space-x-4">
-              <div class="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center text-2xl flex-shrink-0">🔑</div>
-              <div>
-                <h3 class="font-heading font-semibold text-brand-blue">Concepto Central</h3>
-                <p class="text-slate-600">Guardiana de la Confianza.</p>
-              </div>
-            </div>
-            <div class="flex items-start space-x-4">
-              <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-2xl flex-shrink-0">💻</div>
-              <div>
-                <h3 class="font-heading font-semibold text-brand-blue">Tipo de Empresa</h3>
-                <p class="text-slate-600">Tecnología con impacto social profundo.</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="bg-white p-8 rounded-2xl shadow-soft border border-slate-100 flex flex-col justify-center h-full">
-            <div class="mb-6 border-l-4 border-brand-green pl-4">
-              <h3 class="text-lg font-bold text-brand-dark uppercase mb-1">Propuesta de Valor</h3>
-              <p class="text-xl text-brand-blue italic">"Certificamos profesionales, vendemos tranquilidad, garantizamos seguridad."</p>
-            </div>
-            <div class="bg-slate-50 p-4 rounded-lg text-sm text-slate-500">
-              <strong>SCIAN: 561720</strong> - Servicios de limpieza de inmuebles
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="slide hidden h-full flex-col justify-center p-10 md:p-16 fade-in" id="slide-3">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 h-full items-center">
-            <div class="md:col-span-7">
-                <h2 class="font-heading text-4xl font-bold text-brand-blue mb-6">Nuestra Misión</h2>
-                <p class="text-lg text-slate-700 leading-relaxed mb-8 text-justify">
-                    Redefinir el estándar de excelencia y confianza en el cuidado del hogar en el sureste de México. Utilizamos la tecnología para conectar hogares con profesionales altamente calificados y empoderamos a una nueva generación de mujeres —con especial atención a madres solteras, estudiantes y mujeres indígenas— a través de una carrera digna y respetada.
+      <!-- SLIDE 1: PORTADA (Diseño Hero Split) -->
+      <section class="slide absolute inset-0 flex hidden" id="slide-1">
+        <!-- Mitad Izquierda: Texto -->
+        <div class="w-1/2 h-full flex flex-col justify-center px-16 z-10 bg-gradient-to-r from-white via-white to-transparent">
+            <div class="animate-fade-up">
+                <div class="w-16 h-1 bg-brand-teal mb-8"></div>
+                <h1 class="font-serif text-7xl text-brand-navy leading-[1.1] mb-6">
+                    La nueva <br>
+                    <span class="italic text-brand-teal">confianza</span> <br>
+                    del hogar.
+                </h1>
+                <p class="text-slate-500 text-lg max-w-md leading-relaxed mb-8 font-light">
+                    Redefiniendo los estándares de seguridad, limpieza y armonía en el sureste de México.
                 </p>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-white p-4 rounded-xl shadow-sm flex items-center gap-3">
-                        <span class="text-2xl">⭐</span> <span class="font-semibold text-brand-blue">Excelencia</span>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm flex items-center gap-3">
-                        <span class="text-2xl">📱</span> <span class="font-semibold text-brand-blue">Tecnología</span>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm flex items-center gap-3">
-                        <span class="text-2xl">♀️</span> <span class="font-semibold text-brand-blue">Empoderamiento</span>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm flex items-center gap-3">
-                        <span class="text-2xl">🌎</span> <span class="font-semibold text-brand-blue">Impacto Social</span>
-                    </div>
-                </div>
-            </div>
-            <div class="md:col-span-5 h-full flex items-center justify-center relative">
-                 <div class="absolute inset-0 bg-brand-green/10 rounded-full transform scale-90 blur-3xl"></div>
-                <img src="https://images.unsplash.com/photo-1581578731117-104f2a8d2303?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Profesional de limpieza" class="relative rounded-2xl shadow-lg object-cover h-80 w-full grayscale hover:grayscale-0 transition-all duration-500">
-            </div>
-        </div>
-      </section>
-
-      <section class="slide hidden h-full flex-col p-10 md:p-16 fade-in" id="slide-4">
-        <h2 class="font-heading text-4xl font-bold text-brand-blue mb-4">Nuestra Visión (2029)</h2>
-        <p class="text-xl text-slate-600 max-w-4xl mb-12">
-            Convertirnos en el sello de confianza indispensable para los hogares en la península de Yucatán. Sinónimo del más alto estándar de cuidado, discreción y profesionalismo.
-        </p>
-
-        <div class="relative flex-1 flex flex-col justify-center">
-            <div class="absolute top-1/2 left-0 w-full h-1 bg-slate-200 -translate-y-1/2 hidden md:block"></div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
-                <div class="bg-white p-6 rounded-xl shadow-soft border-b-4 border-brand-green transform transition hover:-translate-y-2">
-                    <div class="text-4xl font-bold text-brand-green mb-2">2025</div>
-                    <h4 class="font-heading font-bold text-brand-blue mb-2">Lanzamiento</h4>
-                    <p class="text-sm text-slate-500">Inicio de operaciones en Mérida. Validación de modelo y primeras certificaciones.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-soft border-b-4 border-brand-blue transform transition hover:-translate-y-2">
-                    <div class="text-4xl font-bold text-brand-blue mb-2">2026</div>
-                    <h4 class="font-heading font-bold text-brand-blue mb-2">Consolidación</h4>
-                    <p class="text-sm text-slate-500">Expansión a Campeche. Plataforma al 99.2% de disponibilidad.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-soft border-b-4 border-slate-800 transform transition hover:-translate-y-2">
-                    <div class="text-4xl font-bold text-slate-800 mb-2">2029</div>
-                    <h4 class="font-heading font-bold text-brand-blue mb-2">Liderazgo</h4>
-                    <p class="text-sm text-slate-500">Marca Top of Mind regional. Modelo de impacto social reconocido.</p>
+                
+                <div class="flex flex-col gap-1 text-sm text-brand-navy/70 border-l-2 border-brand-navy/20 pl-4">
+                    <strong>Equipo Fundador</strong>
+                    <span>Daniel Can &middot; Kevin Panti &middot; Mónica Nieto</span>
+                    <span class="text-xs uppercase tracking-widest text-slate-400 mt-1">Noviembre 2025</span>
                 </div>
             </div>
         </div>
+        <!-- Mitad Derecha: Imagen Emotiva -->
+        <div class="w-1/2 h-full absolute right-0 top-0">
+            <div class="absolute inset-0 bg-brand-navy/10 z-10"></div>
+            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                 class="w-full h-full object-cover animate-scale-slow" alt="Interior minimalista y limpio">
+        </div>
       </section>
 
-      <section class="slide hidden h-full flex-col p-10 md:p-16 overflow-y-auto fade-in" id="slide-5">
-        <h2 class="font-heading text-4xl font-bold text-brand-blue mb-10">Objetivos Estratégicos</h2>
+      <!-- SLIDE 2: IDENTIDAD (Grid Glassmorphism) -->
+      <section class="slide absolute inset-0 flex flex-col px-16 pt-24 pb-12 hidden bg-brand-sand" id="slide-2">
+        <h2 class="font-serif text-5xl text-brand-navy mb-12 animate-fade-up">Nuestra Identidad</h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white p-6 rounded-2xl shadow-soft flex flex-col items-center text-center">
-                <span class="text-4xl mb-4 bg-blue-50 w-16 h-16 flex items-center justify-center rounded-full">🎓</span>
-                <h3 class="font-bold text-brand-dark text-lg">Talento</h3>
-                <p class="text-brand-blue text-3xl font-bold my-2">500+</p>
-                <p class="text-sm text-slate-500">Colaboradoras certificadas en el primer año.</p>
+        <div class="grid grid-cols-3 gap-6 h-full pb-8">
+            <!-- Columna Grande: Definición -->
+            <div class="col-span-2 bg-white rounded-3xl p-10 shadow-sm hover:shadow-md transition-shadow duration-500 animate-fade-up delay-100 border border-slate-100 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                    <i class="ph ph-house text-9xl text-brand-navy"></i>
+                </div>
+                <h3 class="text-xs font-bold tracking-widest text-brand-teal uppercase mb-4">El Concepto</h3>
+                <p class="font-serif text-3xl text-brand-navy leading-normal mb-6">
+                    "Guardiana del santuario del hogar."
+                </p>
+                <p class="text-slate-600 text-lg leading-relaxed max-w-2xl">
+                    No vendemos limpieza, vendemos la tranquilidad de saber quién entra a tu casa. Somos una empresa de tecnología con impacto social profundo.
+                </p>
+                <div class="mt-8 flex gap-4">
+                     <span class="px-4 py-2 bg-brand-navy/5 text-brand-navy rounded-lg text-sm font-bold flex items-center gap-2">
+                        <i class="ph-fill ph-shield-check"></i> Confianza
+                     </span>
+                     <span class="px-4 py-2 bg-brand-navy/5 text-brand-navy rounded-lg text-sm font-bold flex items-center gap-2">
+                        <i class="ph-fill ph-heart"></i> Impacto Social
+                     </span>
+                </div>
             </div>
-             <div class="bg-white p-6 rounded-2xl shadow-soft flex flex-col items-center text-center">
-                <span class="text-4xl mb-4 bg-green-50 w-16 h-16 flex items-center justify-center rounded-full">👥</span>
-                <h3 class="font-bold text-brand-dark text-lg">Clientes</h3>
-                <p class="text-brand-green text-3xl font-bold my-2">2,000+</p>
-                <p class="text-sm text-slate-500">Suscriptores activos en Mérida y Campeche (18 meses).</p>
-            </div>
-             <div class="bg-white p-6 rounded-2xl shadow-soft flex flex-col items-center text-center">
-                <span class="text-4xl mb-4 bg-blue-50 w-16 h-16 flex items-center justify-center rounded-full">💪</span>
-                <h3 class="font-bold text-brand-dark text-lg">Empleo Digno</h3>
-                <p class="text-brand-blue text-3xl font-bold my-2">+40%</p>
-                <p class="text-sm text-slate-500">Salarios superiores al promedio informal.</p>
-            </div>
-             <div class="bg-white p-6 rounded-2xl shadow-soft flex flex-col items-center text-center md:col-span-2 lg:col-span-3">
-                <div class="flex flex-col md:flex-row items-center gap-8">
-                    <div>
-                        <span class="text-4xl mb-4 bg-slate-100 w-16 h-16 flex items-center justify-center rounded-full">🔝</span>
+
+            <!-- Columna Lateral: Datos -->
+            <div class="flex flex-col gap-6">
+                <div class="bg-brand-navy text-white rounded-3xl p-8 flex-1 flex flex-col justify-center animate-fade-up delay-200 relative overflow-hidden">
+                    <div class="relative z-10">
+                        <i class="ph ph-briefcase text-3xl text-brand-teal mb-4"></i>
+                        <div class="text-4xl font-serif mb-1">SCIAN 561720</div>
+                        <div class="text-brand-teal/80 text-sm">Servicios de limpieza de inmuebles</div>
                     </div>
-                    <div class="text-left">
-                        <h3 class="font-bold text-brand-dark text-lg">Posicionamiento & Tecnología</h3>
-                        <ul class="list-disc list-inside text-slate-600 mt-2 space-y-1">
-                            <li>Marca #1 en confianza (Top of Mind 60%)</li>
-                            <li>Disponibilidad tecnológica del 99.2%</li>
-                            <li>Satisfacción de cliente ≥ 4.5/5.0</li>
-                        </ul>
-                    </div>
+                    <!-- Decoración de fondo -->
+                    <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-brand-teal/20 rounded-full blur-xl"></div>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 flex-1 border border-slate-100 animate-fade-up delay-300 flex flex-col justify-center">
+                    <h4 class="text-brand-navy font-bold mb-2">Propuesta Única</h4>
+                    <p class="text-slate-500 text-sm">Certificamos profesionales para garantizar seguridad absoluta.</p>
                 </div>
             </div>
         </div>
       </section>
 
-      <section class="slide hidden h-full flex-col p-10 md:p-16 overflow-y-auto fade-in" id="slide-6">
-        <h2 class="font-heading text-4xl font-bold text-brand-blue mb-8">Estructura Comercial</h2>
-        
-        <div class="flex flex-col gap-4 items-center w-full max-w-4xl mx-auto">
+      <!-- SLIDE 3: MISIÓN Y VISIÓN (Diseño Horizontal Scroll) -->
+      <section class="slide absolute inset-0 flex items-center hidden bg-white" id="slide-3">
+        <div class="w-full h-full flex relative">
             
-            <div class="w-full bg-brand-blue text-white p-4 rounded-xl shadow-md text-center font-heading font-semibold">
-                Junta Directiva (Consejo Fundacional)
-            </div>
-            
-            <div class="h-6 w-0.5 bg-slate-300"></div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
-                <div class="bg-white border-t-4 border-brand-green p-4 rounded-xl shadow-sm text-center">
-                    <div class="font-bold text-sm text-slate-800">Mónica Nieto</div>
-                    <div class="text-xs text-brand-green font-semibold uppercase mt-1">Dirección General</div>
-                </div>
-                <div class="bg-white border-t-4 border-brand-blue p-4 rounded-xl shadow-sm text-center">
-                    <div class="font-bold text-sm text-slate-800">Kevin Panti</div>
-                    <div class="text-xs text-brand-blue font-semibold uppercase mt-1">Ops & Tecnología</div>
-                </div>
-                <div class="bg-white border-t-4 border-brand-blue p-4 rounded-xl shadow-sm text-center">
-                    <div class="font-bold text-sm text-slate-800">Daniel Can</div>
-                    <div class="text-xs text-brand-blue font-semibold uppercase mt-1">Marketing</div>
-                </div>
-            </div>
-
-            <div class="h-6 w-0.5 bg-slate-300"></div>
-
-            <div class="w-full bg-slate-200 text-slate-600 p-3 rounded-lg text-center text-sm font-medium">
-                Coordinación RRHH • Academia • Auditoría • Soporte IT
-            </div>
-
-            <div class="w-full bg-brand-green/10 border border-brand-green text-brand-green p-4 rounded-xl text-center font-bold mt-2">
-                Colaboradoras Certificadas de Limpieza
-            </div>
-        </div>
-
-        <div class="mt-8 flex justify-center gap-6 flex-wrap">
-            <span class="px-3 py-1 bg-white rounded-full text-xs text-slate-500 shadow-sm border">Confianza</span>
-            <span class="px-3 py-1 bg-white rounded-full text-xs text-slate-500 shadow-sm border">Dignidad</span>
-            <span class="px-3 py-1 bg-white rounded-full text-xs text-slate-500 shadow-sm border">Excelencia</span>
-        </div>
-      </section>
-
-      <section class="slide hidden h-full flex-col p-10 md:p-16 overflow-y-auto fade-in" id="slide-7">
-        <div class="flex justify-between items-end mb-6">
-            <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-blue">Servicios de Alta Confianza</h2>
-            <span class="text-brand-green font-bold text-lg hidden md:block">$301 - $400 MXN/hora</span>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 h-full">
-            <div class="space-y-6">
-                <div class="bg-white p-6 rounded-2xl shadow-soft">
-                    <h3 class="font-bold text-brand-dark mb-3 border-b pb-2">Producto Tangible & Intangible</h3>
-                    <p class="text-slate-600 mb-4">Un hogar impecable mantenido bajo altos estándares de higiene, sumado a la <strong>tranquilidad absoluta</strong> de quien entra a tu casa.</p>
-                    <ul class="space-y-2">
-                        <li class="flex items-center gap-3 text-sm text-slate-700"><span class="text-brand-blue">🔁</span> Limpieza Recurrente (Quincenal/Mensual)</li>
-                        <li class="flex items-center gap-3 text-sm text-slate-700"><span class="text-brand-blue">🧹</span> Limpieza Profunda Intensiva</li>
-                    </ul>
-                </div>
-
-                <div class="bg-brand-blue text-white p-6 rounded-2xl shadow-soft">
-                    <h3 class="font-bold mb-3">Diferenciadores</h3>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex items-start gap-2">
-                            <span class="bg-white/20 p-1 rounded text-xs mt-0.5">🎓</span> Academia de Certificación (40h)
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="bg-white/20 p-1 rounded text-xs mt-0.5">🕵️</span> Verificación de antecedentes exhaustiva
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="bg-white/20 p-1 rounded text-xs mt-0.5">📍</span> GPS y Monitoreo en tiempo real
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="flex flex-col justify-center bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
-                <h3 class="text-center font-heading font-bold text-slate-800 mb-6">Canales de Adquisición</h3>
-                <div class="space-y-6">
-                    <div>
-                        <div class="flex justify-between text-sm mb-1"><span>App Móvil</span> <span class="font-bold text-brand-blue">45%</span></div>
-                        <div class="w-full bg-slate-100 rounded-full h-3">
-                            <div class="bg-brand-blue h-3 rounded-full" style="width: 45%"></div>
-                        </div>
+            <!-- Misión (Izquierda) -->
+            <div class="w-1/2 h-full p-16 flex flex-col justify-center border-r border-slate-100 bg-brand-sand/50">
+                <div class="animate-fade-up">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="w-8 h-8 rounded-full bg-brand-teal flex items-center justify-center text-white"><i class="ph-bold ph-flag"></i></span>
+                        <h2 class="text-sm font-bold tracking-widest text-brand-navy uppercase">Nuestra Misión</h2>
                     </div>
-                    <div>
-                        <div class="flex justify-between text-sm mb-1"><span>WhatsApp Business</span> <span class="font-bold text-brand-green">29.4%</span></div>
-                        <div class="w-full bg-slate-100 rounded-full h-3">
-                            <div class="bg-brand-green h-3 rounded-full" style="width: 30%"></div>
-                        </div>
-                    </div>
-                     <div>
-                        <div class="flex justify-between text-sm mb-1"><span>Web / Otros</span> <span class="font-bold text-slate-400">Resto</span></div>
-                        <div class="w-full bg-slate-100 rounded-full h-3">
-                            <div class="bg-slate-400 h-3 rounded-full" style="width: 25%"></div>
-                        </div>
-                    </div>
+                    <p class="font-serif text-2xl md:text-3xl text-slate-800 leading-relaxed">
+                        Redefinir el estándar de excelencia en el cuidado del hogar utilizando la <span class="text-brand-teal underline decoration-2 underline-offset-4">tecnología</span> para conectar y empoderar a mujeres a través de carreras dignas.
+                    </p>
                 </div>
             </div>
-        </div>
-      </section>
 
-      <section class="slide hidden h-full flex-col p-10 md:p-16 fade-in" id="slide-8">
-        <h2 class="font-heading text-4xl font-bold text-brand-blue mb-8">Estrategia de Marca</h2>
-        
-        <div class="bg-white rounded-3xl shadow-soft p-8 h-full overflow-y-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="text-sm uppercase tracking-widest text-brand-green font-bold mb-2">Identidad</h3>
-                    <p class="text-2xl font-heading font-bold text-brand-dark mb-6">"La confianza ha vuelto al cuidado de tu hogar"</p>
+            <!-- Visión (Derecha - Interactivo) -->
+            <div class="w-1/2 h-full p-16 flex flex-col justify-center bg-white relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-brand-navy/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                
+                <div class="animate-fade-up delay-100 relative z-10">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="w-8 h-8 rounded-full bg-brand-navy flex items-center justify-center text-white"><i class="ph-bold ph-eye"></i></span>
+                        <h2 class="text-sm font-bold tracking-widest text-brand-navy uppercase">Visión 2029</h2>
+                    </div>
+                    <h3 class="font-serif text-4xl text-brand-navy mb-8">
+                        El sello de confianza de la península.
+                    </h3>
                     
-                    <div class="space-y-4">
-                        <div class="flex gap-4 items-start">
-                            <div class="w-10 h-10 rounded-full bg-red-50 text-red-500 flex items-center justify-center flex-shrink-0">⚠️</div>
-                            <div class="text-sm text-slate-600"><strong>Reto Legal:</strong> Saturación en IMPI. <br>Alternativas: <em>Haven</em> o <em>Guardiana</em>.</div>
+                    <!-- Timeline vertical mini -->
+                    <div class="space-y-6 border-l-2 border-slate-100 pl-6 ml-2">
+                        <div class="relative">
+                            <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-brand-teal border-4 border-white shadow-sm"></span>
+                            <span class="text-xs font-bold text-slate-400 block mb-1">2025</span>
+                            <span class="font-bold text-slate-800">Lanzamiento Mérida</span>
                         </div>
-                        <div class="flex gap-4 items-start">
-                            <div class="w-10 h-10 rounded-full bg-blue-50 text-brand-blue flex items-center justify-center flex-shrink-0">🎯</div>
-                            <div class="text-sm text-slate-600"><strong>Target:</strong> Clase media-alta (25-55 años) en Mérida y Campeche que valora su tiempo y seguridad.</div>
+                        <div class="relative">
+                            <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-brand-navy border-4 border-white shadow-sm"></span>
+                            <span class="text-xs font-bold text-slate-400 block mb-1">2026</span>
+                            <span class="font-bold text-slate-800">Expansión Campeche</span>
                         </div>
-                    </div>
-                </div>
-
-                <div class="border-l border-slate-100 pl-0 md:pl-12">
-                    <h3 class="text-sm uppercase tracking-widest text-brand-blue font-bold mb-4">Mix de Medios</h3>
-                    <div class="grid grid-cols-2 gap-4 mb-6">
-                        <div class="bg-slate-50 p-4 rounded-xl text-center">
-                            <span class="block text-2xl mb-1">📸</span>
-                            <span class="font-bold text-brand-dark">Instagram</span>
-                            <span class="block text-xs text-slate-500">45% Inversión</span>
+                        <div class="relative">
+                            <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-slate-300 border-4 border-white"></span>
+                            <span class="text-xs font-bold text-slate-400 block mb-1">2029</span>
+                            <span class="font-bold text-slate-800">Liderazgo Regional (Top of Mind)</span>
                         </div>
-                        <div class="bg-slate-50 p-4 rounded-xl text-center">
-                            <span class="block text-2xl mb-1">🔍</span>
-                            <span class="font-bold text-brand-dark">Google Ads</span>
-                            <span class="block text-xs text-slate-500">Intención de compra</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3 mt-6">
-                        <div class="w-8 h-8 rounded-full bg-brand-blue"></div>
-                        <div class="w-8 h-8 rounded-full bg-white border border-slate-200"></div>
-                        <div class="w-8 h-8 rounded-full bg-brand-green"></div>
-                        <span class="text-xs text-slate-400 ml-2">Paleta Visual</span>
                     </div>
                 </div>
             </div>
         </div>
       </section>
 
-      <section class="slide hidden h-full flex-col p-10 md:p-16 overflow-y-auto fade-in" id="slide-9">
-        <h2 class="font-heading text-3xl font-bold text-brand-blue mb-6">Ventaja Competitiva & Mercado</h2>
+      <!-- SLIDE 4: OBJETIVOS (Cards Flotantes) -->
+      <section class="slide absolute inset-0 flex flex-col items-center justify-center px-12 hidden bg-slate-50" id="slide-4">
+        <div class="text-center max-w-2xl mb-12 animate-fade-up">
+            <h2 class="font-serif text-4xl text-brand-navy mb-4">Objetivos Estratégicos</h2>
+            <p class="text-slate-500">Metas claras para los primeros 18 meses de operación.</p>
+        </div>
+
+        <div class="flex gap-6 w-full max-w-6xl h-80">
+            <!-- Card 1 -->
+            <div class="flex-1 bg-white rounded-2xl p-8 shadow-sm border-b-4 border-brand-teal hover:-translate-y-2 transition-transform duration-300 animate-fade-up delay-100 flex flex-col justify-between group">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-brand-teal/10 text-brand-teal flex items-center justify-center text-2xl mb-4 group-hover:bg-brand-teal group-hover:text-white transition-colors">
+                        <i class="ph-fill ph-graduation-cap"></i>
+                    </div>
+                    <div class="text-5xl font-serif text-brand-navy mb-2">500+</div>
+                    <div class="font-bold text-slate-700">Talento Certificado</div>
+                </div>
+                <p class="text-sm text-slate-500 mt-4">Mujeres capacitadas en el primer año.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="flex-1 bg-white rounded-2xl p-8 shadow-sm border-b-4 border-brand-navy hover:-translate-y-2 transition-transform duration-300 animate-fade-up delay-200 flex flex-col justify-between group">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-brand-navy/10 text-brand-navy flex items-center justify-center text-2xl mb-4 group-hover:bg-brand-navy group-hover:text-white transition-colors">
+                        <i class="ph-fill ph-users-three"></i>
+                    </div>
+                    <div class="text-5xl font-serif text-brand-navy mb-2">2k+</div>
+                    <div class="font-bold text-slate-700">Clientes Activos</div>
+                </div>
+                <p class="text-sm text-slate-500 mt-4">Suscritos en Mérida y Campeche.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="flex-1 bg-white rounded-2xl p-8 shadow-sm border-b-4 border-purple-500 hover:-translate-y-2 transition-transform duration-300 animate-fade-up delay-300 flex flex-col justify-between group">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-500 flex items-center justify-center text-2xl mb-4 group-hover:bg-purple-500 group-hover:text-white transition-colors">
+                        <i class="ph-fill ph-trend-up"></i>
+                    </div>
+                    <div class="text-5xl font-serif text-brand-navy mb-2">40%</div>
+                    <div class="font-bold text-slate-700">Mejora Salarial</div>
+                </div>
+                <p class="text-sm text-slate-500 mt-4">Superior al promedio del sector informal.</p>
+            </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5: ESTRUCTURA (Diagrama Limpio) -->
+      <section class="slide absolute inset-0 flex flex-col px-16 pt-24 pb-12 hidden bg-white" id="slide-5">
+        <h2 class="font-serif text-4xl text-brand-navy mb-12 text-center animate-fade-up">Estructura Organizacional</h2>
         
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
-            <div class="lg:col-span-2 flex flex-col gap-6">
-                <div class="bg-white p-6 rounded-2xl shadow-soft">
-                    <h3 class="font-bold text-lg mb-3 text-brand-dark">Propuesta Central</h3>
-                    <p class="text-slate-600 text-lg">No somos un directorio. <span class="bg-yellow-100 px-1">Somos un filtro.</span> Certificamos, garantizamos y aseguramos.</p>
+        <div class="flex-1 flex flex-col items-center justify-center relative animate-fade-up delay-100">
+            <!-- Lineas Conectoras (SVG Fondo) -->
+            <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-20" style="z-index:0">
+                <!-- Linea vertical central -->
+                <line x1="50%" y1="10%" x2="50%" y2="35%" stroke="#1e3a8a" stroke-width="2" />
+                <!-- Linea horizontal directores -->
+                <line x1="20%" y1="35%" x2="80%" y2="35%" stroke="#1e3a8a" stroke-width="2" />
+                <!-- Lineas verticales a directores -->
+                <line x1="20%" y1="35%" x2="20%" y2="45%" stroke="#1e3a8a" stroke-width="2" />
+                <line x1="50%" y1="35%" x2="50%" y2="45%" stroke="#1e3a8a" stroke-width="2" />
+                <line x1="80%" y1="35%" x2="80%" y2="45%" stroke="#1e3a8a" stroke-width="2" />
+                <!-- Linea central abajo -->
+                <line x1="50%" y1="65%" x2="50%" y2="75%" stroke="#1e3a8a" stroke-width="2" stroke-dasharray="5,5"/>
+            </svg>
+
+            <!-- Nivel 1 -->
+            <div class="bg-brand-navy text-white px-8 py-3 rounded-full shadow-lg mb-16 z-10 text-lg font-serif tracking-wide">
+                Consejo Fundacional
+            </div>
+
+            <!-- Nivel 2 -->
+            <div class="grid grid-cols-3 gap-12 w-full max-w-5xl z-10">
+                <!-- Director -->
+                <div class="text-center group">
+                    <div class="w-20 h-20 mx-auto bg-slate-100 rounded-full mb-3 overflow-hidden border-2 border-white shadow-md group-hover:border-brand-teal transition-colors">
+                        <!-- Placeholder Avatar -->
+                        <div class="w-full h-full bg-slate-200 flex items-center justify-center text-2xl text-slate-400">MN</div>
+                    </div>
+                    <div class="font-bold text-brand-navy">Mónica Nieto</div>
+                    <div class="text-xs uppercase tracking-widest text-brand-teal mt-1">Directora General</div>
+                </div>
+                 <!-- Director -->
+                 <div class="text-center group">
+                    <div class="w-20 h-20 mx-auto bg-slate-100 rounded-full mb-3 overflow-hidden border-2 border-white shadow-md group-hover:border-brand-teal transition-colors">
+                         <div class="w-full h-full bg-slate-200 flex items-center justify-center text-2xl text-slate-400">KP</div>
+                    </div>
+                    <div class="font-bold text-brand-navy">Kevin Panti</div>
+                    <div class="text-xs uppercase tracking-widest text-brand-teal mt-1">Operaciones & Tech</div>
+                </div>
+                 <!-- Director -->
+                 <div class="text-center group">
+                    <div class="w-20 h-20 mx-auto bg-slate-100 rounded-full mb-3 overflow-hidden border-2 border-white shadow-md group-hover:border-brand-teal transition-colors">
+                         <div class="w-full h-full bg-slate-200 flex items-center justify-center text-2xl text-slate-400">DC</div>
+                    </div>
+                    <div class="font-bold text-brand-navy">Daniel Can</div>
+                    <div class="text-xs uppercase tracking-widest text-brand-teal mt-1">Marketing</div>
+                </div>
+            </div>
+
+            <!-- Nivel 3 -->
+            <div class="mt-20 w-full max-w-4xl z-10">
+                <div class="bg-white border border-slate-100 p-6 rounded-2xl shadow-sm flex justify-around items-center text-sm text-slate-600 font-medium">
+                    <span>Academia</span>
+                    <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+                    <span>Recursos Humanos</span>
+                    <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+                    <span>Soporte IT</span>
+                    <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+                    <span>Auditoría</span>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6: PRODUCTO (Layout Imagen Completa) -->
+      <section class="slide absolute inset-0 flex hidden" id="slide-6">
+         <!-- Imagen Fondo -->
+         <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1527512860163-a2011f5e80d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                 class="w-full h-full object-cover opacity-20" alt="Sala limpia">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-navy via-brand-navy/90 to-transparent"></div>
+         </div>
+
+         <div class="relative z-10 w-full md:w-2/3 p-16 flex flex-col justify-center h-full text-white">
+            <div class="animate-fade-up">
+                <h2 class="font-serif text-5xl mb-2">Servicios Premium</h2>
+                <p class="text-brand-teal text-xl font-light mb-10">Alta confianza &bull; $301 - $400 MXN/hr</p>
+
+                <div class="space-y-8">
+                    <!-- Item 1 -->
+                    <div class="flex gap-6 items-start">
+                        <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-brand-teal text-2xl shrink-0 border border-white/10">
+                            <i class="ph-fill ph-sparkle"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">El Producto Tangible</h3>
+                            <p class="text-white/70 font-light leading-relaxed">Un hogar impecable, ordenado y armonioso bajo los más altos estándares de higiene hospitalaria y residencial.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="flex gap-6 items-start">
+                        <div class="w-12 h-12 rounded-full bg-brand-teal flex items-center justify-center text-white text-2xl shrink-0 shadow-lg shadow-brand-teal/20">
+                            <i class="ph-fill ph-lock-key"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">El Producto Intangible (Core)</h3>
+                            <p class="text-white/70 font-light leading-relaxed">Tranquilidad absoluta. Certificación de 40 horas, verificación de antecedentes penales y GPS en tiempo real.</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-white p-5 rounded-xl shadow-sm">
-                        <div class="text-3xl font-bold text-brand-blue mb-1">80%</div>
-                        <div class="text-xs text-slate-500 uppercase font-bold">Interés de Mercado</div>
-                        <p class="text-sm mt-2 text-slate-600">De los encuestados contrataría el servicio.</p>
+                <div class="mt-12 flex gap-8">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-brand-teal">45%</div>
+                        <div class="text-xs uppercase tracking-wide text-white/50">App Móvil</div>
                     </div>
-                    <div class="bg-white p-5 rounded-xl shadow-sm">
-                        <div class="text-3xl font-bold text-brand-green mb-1">71%</div>
-                        <div class="text-xs text-slate-500 uppercase font-bold">Precio Premium</div>
-                        <p class="text-sm mt-2 text-slate-600">Dispuestos a pagar más por seguridad verificada.</p>
+                    <div class="w-px h-10 bg-white/10"></div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-white">29%</div>
+                        <div class="text-xs uppercase tracking-wide text-white/50">WhatsApp</div>
                     </div>
                 </div>
+            </div>
+         </div>
+      </section>
 
-                <div class="bg-slate-800 text-slate-200 p-6 rounded-2xl text-sm">
-                    <strong>Estrategia de precios:</strong> No competimos por ser los más baratos. Competimos por ser los más seguros. Erradicamos la informalidad ofreciendo salarios 40% superiores.
+      <!-- SLIDE 7: ESTRATEGIA (Dashboard Style) -->
+      <section class="slide absolute inset-0 flex flex-col px-16 pt-20 pb-12 hidden bg-brand-sand" id="slide-7">
+        <div class="flex justify-between items-end mb-8 animate-fade-up">
+            <div>
+                <h2 class="font-serif text-4xl text-brand-navy">Estrategia & Valor</h2>
+                <p class="text-slate-500 mt-2">¿Por qué Ama de Llaves ganará el mercado?</p>
+            </div>
+            <div class="text-right hidden md:block">
+                <div class="text-3xl font-bold text-brand-teal">80%</div>
+                <div class="text-xs text-slate-400 uppercase">Interés de Compra</div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-12 gap-6 h-full pb-6">
+            <!-- Left: SWOT Visual -->
+            <div class="col-span-4 bg-white rounded-3xl p-6 shadow-sm border border-slate-100 animate-fade-up delay-100 flex flex-col">
+                <h3 class="text-sm font-bold uppercase text-brand-navy mb-4">FODA Estratégico</h3>
+                <div class="flex-1 grid grid-cols-1 gap-3">
+                    <div class="bg-green-50 rounded-xl p-4 border-l-4 border-green-400">
+                        <div class="text-green-800 font-bold text-sm">Fortaleza</div>
+                        <div class="text-green-700 text-xs mt-1">Proceso de certificación único y tecnología propia.</div>
+                    </div>
+                    <div class="bg-blue-50 rounded-xl p-4 border-l-4 border-blue-400">
+                        <div class="text-blue-800 font-bold text-sm">Oportunidad</div>
+                        <div class="text-blue-700 text-xs mt-1">Mercado informal masivo y demanda de seguridad.</div>
+                    </div>
+                    <div class="bg-orange-50 rounded-xl p-4 border-l-4 border-orange-400">
+                        <div class="text-orange-800 font-bold text-sm">Reto</div>
+                        <div class="text-orange-700 text-xs mt-1">Costos de adquisición iniciales.</div>
+                    </div>
                 </div>
             </div>
 
-            <div class="bg-white p-6 rounded-2xl shadow-soft border-t-8 border-brand-green flex flex-col justify-between">
-                <h3 class="font-bold text-brand-dark mb-4 text-center">FODA Rápido</h3>
-                <ul class="space-y-4 text-sm flex-1">
-                    <li class="p-3 bg-green-50 rounded-lg border border-green-100">
-                        <strong class="block text-green-800">Fortalezas</strong>
-                        <span class="text-green-700">Modelo certificado y tecnológico.</span>
-                    </li>
-                    <li class="p-3 bg-blue-50 rounded-lg border border-blue-100">
-                        <strong class="block text-blue-800">Oportunidades</strong>
-                        <span class="text-blue-700">Mercado fragmentado e informal.</span>
-                    </li>
-                    <li class="p-3 bg-yellow-50 rounded-lg border border-yellow-100">
-                        <strong class="block text-yellow-800">Debilidades</strong>
-                        <span class="text-yellow-700">Costo de adquisición inicial (CAC).</span>
-                    </li>
-                    <li class="p-3 bg-red-50 rounded-lg border border-red-100">
-                        <strong class="block text-red-800">Amenazas</strong>
-                        <span class="text-red-700">Resistencia al cambio de precio.</span>
-                    </li>
-                </ul>
+            <!-- Right: Marketing & Brand -->
+            <div class="col-span-8 grid grid-cols-2 gap-6">
+                <!-- Brand Identity -->
+                <div class="col-span-2 bg-brand-navy text-white rounded-3xl p-8 relative overflow-hidden animate-fade-up delay-200">
+                    <i class="ph-fill ph-fingerprint text-9xl text-white/5 absolute -right-4 -bottom-8"></i>
+                    <h3 class="text-xl font-serif mb-4 relative z-10">Posicionamiento</h3>
+                    <p class="text-2xl font-light leading-relaxed text-white/90 relative z-10">
+                        "No competimos por precio.<br>Competimos por <b class="text-brand-teal font-bold">seguridad</b>."
+                    </p>
+                    <div class="mt-6 flex gap-3 relative z-10">
+                         <span class="bg-white/10 px-3 py-1 rounded-full text-xs backdrop-blur-sm">Clase Media-Alta</span>
+                         <span class="bg-white/10 px-3 py-1 rounded-full text-xs backdrop-blur-sm">Mérida & Campeche</span>
+                    </div>
+                </div>
+
+                <!-- Channels -->
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 animate-fade-up delay-300">
+                    <div class="w-10 h-10 bg-pink-50 rounded-full flex items-center justify-center text-pink-500 mb-3">
+                        <i class="ph-fill ph-instagram-logo text-xl"></i>
+                    </div>
+                    <div class="font-bold text-brand-navy text-lg">Instagram</div>
+                    <div class="text-slate-500 text-sm mb-2">Canal Principal (45%)</div>
+                    <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-pink-500 w-[45%] h-full"></div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 animate-fade-up delay-300">
+                    <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-blue-500 mb-3">
+                        <i class="ph-fill ph-google-logo text-xl"></i>
+                    </div>
+                    <div class="font-bold text-brand-navy text-lg">Google Ads</div>
+                    <div class="text-slate-500 text-sm mb-2">Intención de Compra</div>
+                    <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-blue-500 w-[30%] h-full"></div>
+                    </div>
+                </div>
             </div>
         </div>
       </section>
 
-      <section class="slide hidden h-full flex-col justify-center p-10 md:p-16 fade-in text-center" id="slide-10">
-        <h2 class="font-heading text-4xl font-bold text-brand-blue mb-12">Conclusión del Equipo</h2>
+      <!-- SLIDE 8: CIERRE (Emotivo) -->
+      <section class="slide absolute inset-0 flex flex-col items-center justify-center text-center px-12 hidden bg-white" id="slide-8">
+        <div class="animate-fade-up max-w-3xl">
+             <div class="mb-8 inline-block p-4 rounded-full bg-brand-teal/10 text-brand-teal text-4xl animate-float">
+                <i class="ph-fill ph-key"></i>
+             </div>
+             <h2 class="font-serif text-5xl md:text-6xl text-brand-navy mb-8 leading-tight">
+                El mercado está listo.<br>
+                <span class="text-brand-teal italic">Nosotros también.</span>
+             </h2>
+             <p class="text-xl text-slate-500 mb-12 font-light">
+                Ama de Llaves no es solo un negocio, es una revolución en cómo México valora el cuidado del hogar.
+             </p>
+             
+             <button class="group bg-brand-navy text-white px-10 py-4 rounded-full font-bold tracking-wide shadow-lg hover:bg-brand-teal hover:shadow-brand-teal/30 transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-3 mx-auto">
+                <span>Iniciar Colaboración</span>
+                <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
+             </button>
+        </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div class="group">
-                <div class="w-16 h-16 bg-slate-200 rounded-full mx-auto mb-4 group-hover:bg-brand-green transition-colors duration-300"></div>
-                <h4 class="font-bold text-brand-dark">Mónica Nieto</h4>
-                <p class="text-sm text-slate-500 mt-2">"El modelo es viable, sostenible y socialmente urgente."</p>
-            </div>
-            <div class="group">
-                <div class="w-16 h-16 bg-slate-200 rounded-full mx-auto mb-4 group-hover:bg-brand-blue transition-colors duration-300"></div>
-                <h4 class="font-bold text-brand-dark">Kevin Panti</h4>
-                <p class="text-sm text-slate-500 mt-2">"La tecnología no es el producto, es el puente hacia la confianza."</p>
-            </div>
-            <div class="group">
-                <div class="w-16 h-16 bg-slate-200 rounded-full mx-auto mb-4 group-hover:bg-brand-blue transition-colors duration-300"></div>
-                <h4 class="font-bold text-brand-dark">Daniel Can</h4>
-                <p class="text-sm text-slate-500 mt-2">"El mercado está listo para evolucionar de lo informal a lo profesional."</p>
-            </div>
-        </div>
-
-        <div class="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
-            <p class="text-xl font-heading text-brand-blue italic mb-6">"Ama de Llaves no es solo un negocio, es una revolución en cómo México valora el cuidado del hogar."</p>
-            <button class="bg-brand-green hover:bg-emerald-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:scale-105">
-                ¿Comenzamos?
-            </button>
-        </div>
+        <div class="absolute bottom-0 w-full h-2 bg-gradient-to-r from-brand-navy via-brand-teal to-brand-navy"></div>
       </section>
 
     </main>
 
-    <footer class="h-16 bg-white border-t border-slate-200 flex items-center justify-between px-6 md:px-12 shrink-0 z-20">
-      <div class="text-sm font-bold text-brand-blue hidden md:block">Ama de Llaves | 2025</div>
-      
-      <div class="flex items-center gap-4 mx-auto md:mx-0">
-        <button id="prevBtn" class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-brand-blue flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed transition">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-              </svg>
-        </button>
-        
-        <div class="flex gap-2" id="progressIndicator">
-            </div>
+    <!-- Controles de Navegación Flotantes -->
+    <div class="absolute bottom-8 right-8 flex gap-3 z-50">
+      <button id="prevBtn" class="w-12 h-12 rounded-full bg-white text-brand-navy shadow-lg hover:bg-brand-sand flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed border border-slate-100">
+        <i class="ph-bold ph-caret-left text-xl"></i>
+      </button>
+      <button id="nextBtn" class="w-12 h-12 rounded-full bg-brand-navy text-white shadow-lg hover:bg-brand-teal flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+        <i class="ph-bold ph-caret-right text-xl"></i>
+      </button>
+    </div>
 
-        <button id="nextBtn" class="w-10 h-10 rounded-full bg-brand-blue hover:bg-blue-900 text-white flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed shadow-md transition">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-              </svg>
-        </button>
-      </div>
-      
-      <div id="currentPage" class="text-xs font-bold text-slate-400 w-12 text-right font-mono">1/10</div>
-    </footer>
+    <!-- Indicador de Progreso (Barra inferior) -->
+    <div class="absolute bottom-0 left-0 w-full h-1.5 bg-slate-100 z-40">
+        <div id="progressBar" class="h-full bg-brand-teal transition-all duration-500 ease-out" style="width: 0%"></div>
+    </div>
 
   </div>
 
+  <!-- Lógica Javascript -->
   <script>
     const slides = document.querySelectorAll('.slide');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const progress = document.getElementById('progressIndicator');
-    const currentPage = document.getElementById('currentPage');
+    const progressBar = document.getElementById('progressBar');
     
     let current = 0;
     const total = slides.length;
 
     function updateSlides() {
+      // Ocultar todas y mostrar actual con animación
       slides.forEach((sl, i) => {
         if (i === current) {
             sl.classList.remove('hidden');
-            sl.classList.add('flex');
+            // Reiniciar animaciones clonando el nodo (truco simple para CSS animation restart)
+            // En producción usaríamos clases de estado, pero esto funciona bien para demos
         } else {
             sl.classList.add('hidden');
-            sl.classList.remove('flex');
         }
       });
 
+      // Actualizar botones
       prevBtn.disabled = current === 0;
       nextBtn.disabled = current === total - 1;
-
-      // Render Dots
-      progress.innerHTML = '';
-      for (let i = 0; i < total; i++) {
-        const d = document.createElement('div');
-        // Estilos Tailwind para los dots
-        const activeClass = i === current ? 'bg-brand-green w-6' : 'bg-slate-300 hover:bg-slate-400 w-2';
-        d.className = `h-2 rounded-full transition-all duration-300 cursor-pointer ${activeClass}`;
-        d.onclick = () => gotoSlide(i);
-        progress.appendChild(d);
+      
+      if(current === total - 1) {
+        nextBtn.innerHTML = '<i class="ph-bold ph-check text-xl"></i>';
+        nextBtn.classList.add('bg-brand-teal');
+      } else {
+        nextBtn.innerHTML = '<i class="ph-bold ph-caret-right text-xl"></i>';
+        nextBtn.classList.remove('bg-brand-teal');
       }
 
-      currentPage.textContent = `${current + 1} / ${total}`;
+      // Barra de progreso
+      const percentage = ((current + 1) / total) * 100;
+      progressBar.style.width = `${percentage}%`;
     }
 
-    function gotoSlide(idx) {
-      if (idx >= 0 && idx < total) {
-        current = idx;
+    function nextSlide() {
+      if (current < total - 1) {
+        current++;
         updateSlides();
       }
     }
 
-    prevBtn.onclick = () => gotoSlide(current - 1);
-    nextBtn.onclick = () => gotoSlide(current + 1);
+    function prevSlide() {
+      if (current > 0) {
+        current--;
+        updateSlides();
+      }
+    }
 
+    prevBtn.onclick = prevSlide;
+    nextBtn.onclick = nextSlide;
+
+    // Teclado
     window.addEventListener('keydown', e => {
-      if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-        if (current > 0) gotoSlide(current - 1);
-      }
-      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
-        if (current < total - 1) gotoSlide(current + 1);
-      }
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') nextSlide();
     });
 
     // Inicializar
