@@ -1,1 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ama de Llaves - Presentación de Negocio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Open Sans', 'sans-serif'],
+            heading: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              blue: '#1e3a8a',   // Azul principal
+              green: '#43b48f',  // Verde acento
+              dark: '#232946',   // Texto oscuro
+              light: '#f8fafc',  // Fondo diapositivas
+            }
+          },
+          boxShadow: {
+            'soft': '0 4px 20px -2px rgba(30, 58, 138, 0.05)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Animación personalizada para las diapositivas */
+    .fade-in {
+      animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Scrollbar minimalista para contenido extenso */
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 to-brand-blue h-screen w-screen flex items-center justify-center overflow-hidden p-4 sm:p-8">
 
+  <div id="presentation-container" class="bg-brand-light w-full max-w-[1280px] aspect-video rounded-3xl shadow-2xl flex flex-col overflow-hidden relative">
+    
+    <main class="flex-1 relative overflow-hidden">
+      
+      <section class="slide hidden h-full flex-col justify-center items-center text-center p-12 fade-in" id="slide-1">
+        <div class="mb-8 animate-bounce">
+          <svg viewBox="0 0 64 64" class="w-24 h-24 mx-auto drop-shadow-md">
+            <circle cx="32" cy="32" r="31" stroke="#1e3a8a" stroke-width="2" fill="#ffffff"/>
+            <path d="M20 44L44 44C45.1 44 46 43.1 46 42V28C46 27.4 45.5 26.9 44.9 26.9L40.9 27V20C40.9 16.1 37.5 13 33.5 13C29.6 13 26.1 16.1 26.1 20V27H22.9C22.3 27 21.8 27.5 21.8 28V42C21.8 43.1 22.7 44 20 44Z" fill="#1e3a8a"/>
+            <rect x="18" y="36" width="28" height="7" rx="2" fill="#43b48f"/>
+          </svg>
+        </div>
+        <h1 class="font-heading font-bold text-5xl md:text-6xl text-brand-blue mb-4 tracking-tight">Ama de Llaves</h1>
+        <p class="font-heading text-xl md:text-2xl text-brand-green font-semibold mb-12">Redefiniendo la Confianza en el Cuidado del Hogar</p>
+        
+        <div class="bg-white/60 backdrop-blur-sm rounded-xl p-6 border border-slate-200 shadow-soft inline-block">
+          <p class="text-brand-dark font-medium mb-2">Daniel Isaias Can Lara &bull; Kevin Panti Ortegón &bull; Mónica Nicte-Ha Nieto Caballero</p>
+          <p class="text-slate-500 text-sm uppercase tracking-wider font-bold">Instituto Tecnológico de Campeche | 21 Noviembre 2025</p>
+        </div>
+      </section>
+
+      <section class="slide hidden h-full flex-col p-10 md:p-16 overflow-y-auto fade-in scrollbar-hide" id="slide-2">
+        <h2 class="font-heading text-4xl font-bold text-brand-blue mb-2">Identidad Corporativa</h2>
+        <p class="text-brand-green font-semibold text-xl mb-8">Ama de Llaves</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full">
+          <div class="space-y-6">
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-2xl flex-shrink-0">🏠</div>
+              <div>
+                <h3 class="font-heading font-semibold text-brand-blue">Definición Poética</h3>
+                <p class="text-slate-600">Guardiana del santuario del hogar; profesional que cultiva la armonía y el orden.</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center text-2xl flex-shrink-0">🔑</div>
+              <div>
+                <h3 class="font-heading font-semibold text-brand-blue">Concepto Central</h3>
+                <p class="text-slate-600">Guardiana de la Confianza.</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-2xl flex-shrink-0">💻</div>
+              <div>
+                <h3 class="font-heading font-semibold text-brand-blue">Tipo de Empresa</h3>
+                <p class="text-slate-600">Tecnología con impacto social profundo.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white p-8 rounded-2xl shadow-soft border border-slate-100 flex flex-col justify-center h-full">
+            <div class="mb-6 border-l-4 border-brand-green pl-4">
+              <h3 class="text-lg font-bold text-brand-dark uppercase mb-1">Propuesta de Valor</h3>
+              <p class="text-xl text-brand-blue italic">"Certificamos profesionales, vendemos tranquilidad, garantizamos seguridad."</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-lg text-sm text-slate-500">
+              <strong>SCIAN: 561720</strong> - Servicios de limpieza de inmuebles
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide hidden h-full flex-col justify-center p-10 md:p-16 fade-in" id="slide-3">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 h-full items-center">
+            <div class="md:col-span-7">
+                <h2 class="font-heading text-4xl font-bold text-brand-blue mb-6">Nuestra Misión</h2>
+                <p class="text-lg text-slate-700 leading-relaxed mb-8 text-justify">
+                    Redefinir el estándar de excelencia y confianza en el cuidado del hogar en el sureste de México. Utilizamos la tecnología para conectar hogares con profesionales altamente calificados y empoderamos a una nueva generación de mujeres —con especial atención a madres solteras, estudiantes y mujeres indígenas— a través de una carrera digna y respetada.
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-white p-4 rounded-xl shadow-sm flex items-center gap-3">
+                        <span class="text-2xl">⭐</span> <span class="font-semibold text-brand-blue">Excelencia</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm flex items-center gap-3">
+                        <span class="text-2xl">📱</span> <span class="font-semibold text-brand-blue">Tecnología</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm flex items-center gap-3">
+                        <span class="text-2xl">♀️</span> <span class="font-semibold text-brand-blue">Empoderamiento</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm flex items-center gap-3">
+                        <span class="text-2xl">🌎</span> <span class="font-semibold text-brand-blue">Impacto Social</span>
+                    </div>
+                </div>
+            </div>
+            <div class="md:col-span-5 h-full flex items-center justify-center relative">
+                 <div class="absolute inset-0 bg-brand-green/10 rounded-full transform scale-90 blur-3xl"></div>
+                <img src="https://images.unsplash.com/photo-1581578731117-104f2a8d2303?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Profesional de limpieza" class="relative rounded-2xl shadow-lg object-cover h-80 w-full grayscale hover:grayscale-0 transition-all duration-500">
+            </div>
+        </div>
+      </section>
+
+      <section class="slide hidden h-full flex-col p-10 md:p-16 fade-in" id="slide-4">
+        <h2 class="font-heading text-4xl font-bold text-brand-blue mb-4">Nuestra Visión (2029)</h2>
+        <p class="text-xl text-slate-600 max-w-4xl mb-12">
+            Convertirnos en el sello de confianza indispensable para los hogares en la península de Yucatán. Sinónimo del más alto estándar de cuidado, discreción y profesionalismo.
+        </p>
+
+        <div class="relative flex-1 flex flex-col justify-center">
+            <div class="absolute top-1/2 left-0 w-full h-1 bg-slate-200 -translate-y-1/2 hidden md:block"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                <div class="bg-white p-6 rounded-xl shadow-soft border-b-4 border-brand-green transform transition hover:-translate-y-2">
+                    <div class="text-4xl font-bold text-brand-green mb-2">2025</div>
+                    <h4 class="font-heading font-bold text-brand-blue mb-2">Lanzamiento</h4>
+                    <p class="text-sm text-slate-500">Inicio de operaciones en Mérida. Validación de modelo y primeras certificaciones.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-soft border-b-4 border-brand-blue transform transition hover:-translate-y-2">
+                    <div class="text-4xl font-bold text-brand-blue mb-2">2026</div>
+                    <h4 class="font-heading font-bold text-brand-blue mb-2">Consolidación</h4>
+                    <p class="text-sm text-slate-500">Expansión a Campeche. Plataforma al 99.2% de disponibilidad.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-soft border-b-4 border-slate-800 transform transition hover:-translate-y-2">
+                    <div class="text-4xl font-bold text-slate-800 mb-2">2029</div>
+                    <h4 class="font-heading font-bold text-brand-blue mb-2">Liderazgo</h4>
+                    <p class="text-sm text-slate-500">Marca Top of Mind regional. Modelo de impacto social reconocido.</p>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      <section class="slide hidden h-full flex-col p-10 md:p-16 overflow-y-auto fade-in" id="slide-5">
+        <h2 class="font-heading text-4xl font-bold text-brand-blue mb-10">Objetivos Estratégicos</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-2xl shadow-soft flex flex-col items-center text-center">
+                <span class="text-4xl mb-4 bg-blue-50 w-16 h-16 flex items-center justify-center rounded-full">🎓</span>
+                <h3 class="font-bold text-brand-dark text-lg">Talento</h3>
+                <p class="text-brand-blue text-3xl font-bold my-2">500+</p>
+                <p class="text-sm text-slate-500">Colaboradoras certificadas en el primer año.</p>
+            </div>
+             <div class="bg-white p-6 rounded-2xl shadow-soft flex flex-col items-center text-center">
+                <span class="text-4xl mb-4 bg-green-50 w-16 h-16 flex items-center justify-center rounded-full">👥</span>
+                <h3 class="font-bold text-brand-dark text-lg">Clientes</h3>
+                <p class="text-brand-green text-3xl font-bold my-2">2,000+</p>
+                <p class="text-sm text-slate-500">Suscriptores activos en Mérida y Campeche (18 meses).</p>
+            </div>
+             <div class="bg-white p-6 rounded-2xl shadow-soft flex flex-col items-center text-center">
+                <span class="text-4xl mb-4 bg-blue-50 w-16 h-16 flex items-center justify-center rounded-full">💪</span>
+                <h3 class="font-bold text-brand-dark text-lg">Empleo Digno</h3>
+                <p class="text-brand-blue text-3xl font-bold my-2">+40%</p>
+                <p class="text-sm text-slate-500">Salarios superiores al promedio informal.</p>
+            </div>
+             <div class="bg-white p-6 rounded-2xl shadow-soft flex flex-col items-center text-center md:col-span-2 lg:col-span-3">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div>
+                        <span class="text-4xl mb-4 bg-slate-100 w-16 h-16 flex items-center justify-center rounded-full">🔝</span>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="font-bold text-brand-dark text-lg">Posicionamiento & Tecnología</h3>
+                        <ul class="list-disc list-inside text-slate-600 mt-2 space-y-1">
+                            <li>Marca #1 en confianza (Top of Mind 60%)</li>
+                            <li>Disponibilidad tecnológica del 99.2%</li>
+                            <li>Satisfacción de cliente ≥ 4.5/5.0</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      <section class="slide hidden h-full flex-col p-10 md:p-16 overflow-y-auto fade-in" id="slide-6">
+        <h2 class="font-heading text-4xl font-bold text-brand-blue mb-8">Estructura Comercial</h2>
+        
+        <div class="flex flex-col gap-4 items-center w-full max-w-4xl mx-auto">
+            
+            <div class="w-full bg-brand-blue text-white p-4 rounded-xl shadow-md text-center font-heading font-semibold">
+                Junta Directiva (Consejo Fundacional)
+            </div>
+            
+            <div class="h-6 w-0.5 bg-slate-300"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+                <div class="bg-white border-t-4 border-brand-green p-4 rounded-xl shadow-sm text-center">
+                    <div class="font-bold text-sm text-slate-800">Mónica Nieto</div>
+                    <div class="text-xs text-brand-green font-semibold uppercase mt-1">Dirección General</div>
+                </div>
+                <div class="bg-white border-t-4 border-brand-blue p-4 rounded-xl shadow-sm text-center">
+                    <div class="font-bold text-sm text-slate-800">Kevin Panti</div>
+                    <div class="text-xs text-brand-blue font-semibold uppercase mt-1">Ops & Tecnología</div>
+                </div>
+                <div class="bg-white border-t-4 border-brand-blue p-4 rounded-xl shadow-sm text-center">
+                    <div class="font-bold text-sm text-slate-800">Daniel Can</div>
+                    <div class="text-xs text-brand-blue font-semibold uppercase mt-1">Marketing</div>
+                </div>
+            </div>
+
+            <div class="h-6 w-0.5 bg-slate-300"></div>
+
+            <div class="w-full bg-slate-200 text-slate-600 p-3 rounded-lg text-center text-sm font-medium">
+                Coordinación RRHH • Academia • Auditoría • Soporte IT
+            </div>
+
+            <div class="w-full bg-brand-green/10 border border-brand-green text-brand-green p-4 rounded-xl text-center font-bold mt-2">
+                Colaboradoras Certificadas de Limpieza
+            </div>
+        </div>
+
+        <div class="mt-8 flex justify-center gap-6 flex-wrap">
+            <span class="px-3 py-1 bg-white rounded-full text-xs text-slate-500 shadow-sm border">Confianza</span>
+            <span class="px-3 py-1 bg-white rounded-full text-xs text-slate-500 shadow-sm border">Dignidad</span>
+            <span class="px-3 py-1 bg-white rounded-full text-xs text-slate-500 shadow-sm border">Excelencia</span>
+        </div>
+      </section>
+
+      <section class="slide hidden h-full flex-col p-10 md:p-16 overflow-y-auto fade-in" id="slide-7">
+        <div class="flex justify-between items-end mb-6">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-blue">Servicios de Alta Confianza</h2>
+            <span class="text-brand-green font-bold text-lg hidden md:block">$301 - $400 MXN/hora</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 h-full">
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-2xl shadow-soft">
+                    <h3 class="font-bold text-brand-dark mb-3 border-b pb-2">Producto Tangible & Intangible</h3>
+                    <p class="text-slate-600 mb-4">Un hogar impecable mantenido bajo altos estándares de higiene, sumado a la <strong>tranquilidad absoluta</strong> de quien entra a tu casa.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-3 text-sm text-slate-700"><span class="text-brand-blue">🔁</span> Limpieza Recurrente (Quincenal/Mensual)</li>
+                        <li class="flex items-center gap-3 text-sm text-slate-700"><span class="text-brand-blue">🧹</span> Limpieza Profunda Intensiva</li>
+                    </ul>
+                </div>
+
+                <div class="bg-brand-blue text-white p-6 rounded-2xl shadow-soft">
+                    <h3 class="font-bold mb-3">Diferenciadores</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-2">
+                            <span class="bg-white/20 p-1 rounded text-xs mt-0.5">🎓</span> Academia de Certificación (40h)
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="bg-white/20 p-1 rounded text-xs mt-0.5">🕵️</span> Verificación de antecedentes exhaustiva
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="bg-white/20 p-1 rounded text-xs mt-0.5">📍</span> GPS y Monitoreo en tiempo real
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="flex flex-col justify-center bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                <h3 class="text-center font-heading font-bold text-slate-800 mb-6">Canales de Adquisición</h3>
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between text-sm mb-1"><span>App Móvil</span> <span class="font-bold text-brand-blue">45%</span></div>
+                        <div class="w-full bg-slate-100 rounded-full h-3">
+                            <div class="bg-brand-blue h-3 rounded-full" style="width: 45%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1"><span>WhatsApp Business</span> <span class="font-bold text-brand-green">29.4%</span></div>
+                        <div class="w-full bg-slate-100 rounded-full h-3">
+                            <div class="bg-brand-green h-3 rounded-full" style="width: 30%"></div>
+                        </div>
+                    </div>
+                     <div>
+                        <div class="flex justify-between text-sm mb-1"><span>Web / Otros</span> <span class="font-bold text-slate-400">Resto</span></div>
+                        <div class="w-full bg-slate-100 rounded-full h-3">
+                            <div class="bg-slate-400 h-3 rounded-full" style="width: 25%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      <section class="slide hidden h-full flex-col p-10 md:p-16 fade-in" id="slide-8">
+        <h2 class="font-heading text-4xl font-bold text-brand-blue mb-8">Estrategia de Marca</h2>
+        
+        <div class="bg-white rounded-3xl shadow-soft p-8 h-full overflow-y-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-sm uppercase tracking-widest text-brand-green font-bold mb-2">Identidad</h3>
+                    <p class="text-2xl font-heading font-bold text-brand-dark mb-6">"La confianza ha vuelto al cuidado de tu hogar"</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex gap-4 items-start">
+                            <div class="w-10 h-10 rounded-full bg-red-50 text-red-500 flex items-center justify-center flex-shrink-0">⚠️</div>
+                            <div class="text-sm text-slate-600"><strong>Reto Legal:</strong> Saturación en IMPI. <br>Alternativas: <em>Haven</em> o <em>Guardiana</em>.</div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="w-10 h-10 rounded-full bg-blue-50 text-brand-blue flex items-center justify-center flex-shrink-0">🎯</div>
+                            <div class="text-sm text-slate-600"><strong>Target:</strong> Clase media-alta (25-55 años) en Mérida y Campeche que valora su tiempo y seguridad.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-l border-slate-100 pl-0 md:pl-12">
+                    <h3 class="text-sm uppercase tracking-widest text-brand-blue font-bold mb-4">Mix de Medios</h3>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-slate-50 p-4 rounded-xl text-center">
+                            <span class="block text-2xl mb-1">📸</span>
+                            <span class="font-bold text-brand-dark">Instagram</span>
+                            <span class="block text-xs text-slate-500">45% Inversión</span>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl text-center">
+                            <span class="block text-2xl mb-1">🔍</span>
+                            <span class="font-bold text-brand-dark">Google Ads</span>
+                            <span class="block text-xs text-slate-500">Intención de compra</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 mt-6">
+                        <div class="w-8 h-8 rounded-full bg-brand-blue"></div>
+                        <div class="w-8 h-8 rounded-full bg-white border border-slate-200"></div>
+                        <div class="w-8 h-8 rounded-full bg-brand-green"></div>
+                        <span class="text-xs text-slate-400 ml-2">Paleta Visual</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      <section class="slide hidden h-full flex-col p-10 md:p-16 overflow-y-auto fade-in" id="slide-9">
+        <h2 class="font-heading text-3xl font-bold text-brand-blue mb-6">Ventaja Competitiva & Mercado</h2>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
+            <div class="lg:col-span-2 flex flex-col gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-soft">
+                    <h3 class="font-bold text-lg mb-3 text-brand-dark">Propuesta Central</h3>
+                    <p class="text-slate-600 text-lg">No somos un directorio. <span class="bg-yellow-100 px-1">Somos un filtro.</span> Certificamos, garantizamos y aseguramos.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-white p-5 rounded-xl shadow-sm">
+                        <div class="text-3xl font-bold text-brand-blue mb-1">80%</div>
+                        <div class="text-xs text-slate-500 uppercase font-bold">Interés de Mercado</div>
+                        <p class="text-sm mt-2 text-slate-600">De los encuestados contrataría el servicio.</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-xl shadow-sm">
+                        <div class="text-3xl font-bold text-brand-green mb-1">71%</div>
+                        <div class="text-xs text-slate-500 uppercase font-bold">Precio Premium</div>
+                        <p class="text-sm mt-2 text-slate-600">Dispuestos a pagar más por seguridad verificada.</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 text-slate-200 p-6 rounded-2xl text-sm">
+                    <strong>Estrategia de precios:</strong> No competimos por ser los más baratos. Competimos por ser los más seguros. Erradicamos la informalidad ofreciendo salarios 40% superiores.
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-soft border-t-8 border-brand-green flex flex-col justify-between">
+                <h3 class="font-bold text-brand-dark mb-4 text-center">FODA Rápido</h3>
+                <ul class="space-y-4 text-sm flex-1">
+                    <li class="p-3 bg-green-50 rounded-lg border border-green-100">
+                        <strong class="block text-green-800">Fortalezas</strong>
+                        <span class="text-green-700">Modelo certificado y tecnológico.</span>
+                    </li>
+                    <li class="p-3 bg-blue-50 rounded-lg border border-blue-100">
+                        <strong class="block text-blue-800">Oportunidades</strong>
+                        <span class="text-blue-700">Mercado fragmentado e informal.</span>
+                    </li>
+                    <li class="p-3 bg-yellow-50 rounded-lg border border-yellow-100">
+                        <strong class="block text-yellow-800">Debilidades</strong>
+                        <span class="text-yellow-700">Costo de adquisición inicial (CAC).</span>
+                    </li>
+                    <li class="p-3 bg-red-50 rounded-lg border border-red-100">
+                        <strong class="block text-red-800">Amenazas</strong>
+                        <span class="text-red-700">Resistencia al cambio de precio.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+      </section>
+
+      <section class="slide hidden h-full flex-col justify-center p-10 md:p-16 fade-in text-center" id="slide-10">
+        <h2 class="font-heading text-4xl font-bold text-brand-blue mb-12">Conclusión del Equipo</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div class="group">
+                <div class="w-16 h-16 bg-slate-200 rounded-full mx-auto mb-4 group-hover:bg-brand-green transition-colors duration-300"></div>
+                <h4 class="font-bold text-brand-dark">Mónica Nieto</h4>
+                <p class="text-sm text-slate-500 mt-2">"El modelo es viable, sostenible y socialmente urgente."</p>
+            </div>
+            <div class="group">
+                <div class="w-16 h-16 bg-slate-200 rounded-full mx-auto mb-4 group-hover:bg-brand-blue transition-colors duration-300"></div>
+                <h4 class="font-bold text-brand-dark">Kevin Panti</h4>
+                <p class="text-sm text-slate-500 mt-2">"La tecnología no es el producto, es el puente hacia la confianza."</p>
+            </div>
+            <div class="group">
+                <div class="w-16 h-16 bg-slate-200 rounded-full mx-auto mb-4 group-hover:bg-brand-blue transition-colors duration-300"></div>
+                <h4 class="font-bold text-brand-dark">Daniel Can</h4>
+                <p class="text-sm text-slate-500 mt-2">"El mercado está listo para evolucionar de lo informal a lo profesional."</p>
+            </div>
+        </div>
+
+        <div class="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
+            <p class="text-xl font-heading text-brand-blue italic mb-6">"Ama de Llaves no es solo un negocio, es una revolución en cómo México valora el cuidado del hogar."</p>
+            <button class="bg-brand-green hover:bg-emerald-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:scale-105">
+                ¿Comenzamos?
+            </button>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="h-16 bg-white border-t border-slate-200 flex items-center justify-between px-6 md:px-12 shrink-0 z-20">
+      <div class="text-sm font-bold text-brand-blue hidden md:block">Ama de Llaves | 2025</div>
+      
+      <div class="flex items-center gap-4 mx-auto md:mx-0">
+        <button id="prevBtn" class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-brand-blue flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed transition">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
+        </button>
+        
+        <div class="flex gap-2" id="progressIndicator">
+            </div>
+
+        <button id="nextBtn" class="w-10 h-10 rounded-full bg-brand-blue hover:bg-blue-900 text-white flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed shadow-md transition">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+        </button>
+      </div>
+      
+      <div id="currentPage" class="text-xs font-bold text-slate-400 w-12 text-right font-mono">1/10</div>
+    </footer>
+
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const progress = document.getElementById('progressIndicator');
+    const currentPage = document.getElementById('currentPage');
+    
+    let current = 0;
+    const total = slides.length;
+
+    function updateSlides() {
+      slides.forEach((sl, i) => {
+        if (i === current) {
+            sl.classList.remove('hidden');
+            sl.classList.add('flex');
+        } else {
+            sl.classList.add('hidden');
+            sl.classList.remove('flex');
+        }
+      });
+
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === total - 1;
+
+      // Render Dots
+      progress.innerHTML = '';
+      for (let i = 0; i < total; i++) {
+        const d = document.createElement('div');
+        // Estilos Tailwind para los dots
+        const activeClass = i === current ? 'bg-brand-green w-6' : 'bg-slate-300 hover:bg-slate-400 w-2';
+        d.className = `h-2 rounded-full transition-all duration-300 cursor-pointer ${activeClass}`;
+        d.onclick = () => gotoSlide(i);
+        progress.appendChild(d);
+      }
+
+      currentPage.textContent = `${current + 1} / ${total}`;
+    }
+
+    function gotoSlide(idx) {
+      if (idx >= 0 && idx < total) {
+        current = idx;
+        updateSlides();
+      }
+    }
+
+    prevBtn.onclick = () => gotoSlide(current - 1);
+    nextBtn.onclick = () => gotoSlide(current + 1);
+
+    window.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        if (current > 0) gotoSlide(current - 1);
+      }
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        if (current < total - 1) gotoSlide(current + 1);
+      }
+    });
+
+    // Inicializar
+    updateSlides();
+  </script>
+</body>
+</html>
